@@ -5,9 +5,8 @@ import styles from './ContactsItem.module.css';
 function ContactsItem({ contact: { name, number, id }, onRemoveContact }) {
   return (
     <li className={styles.contactsList}>
-      <span>
-        {name}: {number}
-      </span>
+      <span>{name}</span>
+      <span className={styles.contactsNumber}>{number}</span>
       <button
         className={styles.btn}
         type="button"
