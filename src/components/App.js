@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import ContactForm from './ContactForm/ContactForm';
 import ContactsList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
-import styles from './App.module.css';
+import Alert from './Alert/Alert';
+import './App.css';
 
 class App extends Component {
   state = {
     contacts: [],
     filter: '',
+    alert: false,
   };
 
   componentDidMount() {
@@ -31,13 +34,16 @@ class App extends Component {
 
   addContact = newContact => {
     const { contacts } = this.state;
-    contacts.find(contact => contact.name === newContact.name)
-      ? alert(`${newContact.name} is already in contacts`)
-      : this.setState(prevState => {
-          return {
-            contacts: [...prevState.contacts, newContact],
-          };
-        });
+    if (contacts.find(contact => contact.name === newContact.name)) {
+      this.setState({ alert: true });
+      setTimeout(() => this.setState({ alert: false }), 3000);
+    } else {
+      this.setState(prevState => {
+        return {
+          contacts: [...prevState.contacts, newContact],
+        };
+      });
+    }
   };
 
   onChangeFilter = filter => {
@@ -57,15 +63,35 @@ class App extends Component {
     );
 
     return (
-      <div className={styles.container}>
-        <h1>Phonebook</h1>
+      <div className="main-container">
+        <CSSTransition
+          in={true}
+          appear={true}
+          timeout={500}
+          unmountOnExit
+          classNames="title"
+        >
+          <h1>Phonebook</h1>
+        </CSSTransition>
+        <CSSTransition
+          in={this.state.alert}
+          timeout={250}
+          unmountOnExit
+          classNames="alert"
+        >
+          <Alert />
+        </CSSTransition>
         <ContactForm onAddContact={this.addContact}></ContactForm>
         <h2>Contacts</h2>
         {contacts.length === 0 ? <p>No contacts...</p> : null}
-        {contacts.length > 1 ? (
+        <CSSTransition
+          in={contacts.length > 1}
+          timeout={250}
+          unmountOnExit
+          classNames="filter"
+        >
           <Filter value={filter} onChangeFilter={this.onChangeFilter} />
-        ) : null}
-
+        </CSSTransition>
         <ContactsList
           contacts={filteredContacts}
           onRemoveContact={this.removeContact}

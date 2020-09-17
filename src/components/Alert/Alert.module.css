@@ -1,0 +1,12 @@
+.alert {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  margin: 0;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  background-color: rgba(255, 0, 0, 0.555);
+}

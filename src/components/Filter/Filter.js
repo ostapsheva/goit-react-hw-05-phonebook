@@ -4,7 +4,7 @@ import styles from './Filter.module.css';
 
 function Filter({ value, onChangeFilter }) {
   return (
-    <label>
+    <label className={styles.label}>
       Find contacts by name
       <input
         className={styles.input}

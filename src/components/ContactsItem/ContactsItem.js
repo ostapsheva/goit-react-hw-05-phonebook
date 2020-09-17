@@ -11,9 +11,8 @@ function ContactsItem({ contact: { name, number, id }, onRemoveContact }) {
       <button
         className={styles.btn}
         type="button"
-        data-id={id}
-        onClick={e => {
-          onRemoveContact(e.target.dataset.id);
+        onClick={() => {
+          onRemoveContact(id);
         }}
       >
         delete

@@ -1,0 +1,57 @@
+.main-container {
+  width: 500px;
+  margin: 75px auto 0;
+  border: 2px solid blueviolet;
+  border-radius: 10px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.title-appear {
+  transform: translateX(-100%);
+}
+
+.title-appear-active {
+  transform: translateX(0);
+  transition: transform 500ms linear;
+}
+
+.filter-enter {
+  transform: scale(0);
+}
+
+.filter-enter-active {
+  transform: scale(1);
+  transition: transform 250ms ease-in-out;
+}
+
+.filter-exit {
+  transform: scale(1);
+}
+
+.filter-exit-active {
+  transform: scale(0);
+  transition: transform 250ms ease-in-out;
+}
+
+.alert-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.alert-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+}
+
+.alert-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.alert-exit-active {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+}
